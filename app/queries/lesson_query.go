@@ -1,3 +1,7 @@
+// db queries for lessons
+// Pure SQL queries for now, will implement something like `gorm`
+// when I optimize
+
 package queries
 
 import (
@@ -63,7 +67,6 @@ func (q *LessonQueries) UpdateLesson(id uuid.UUID, l *models.Lesson) (string, er
 	query := `UPDATE lessons SET updated_at = $2, active = $6 WHERE id = $1`
 	// query db, update fields
 	_, err := q.Exec(query, id, l.Updated_at, l.Active)
-
 	if err != nil {
 		// return err message
 		return "", fmt.Errorf("query error: failed to update course - %e", err)

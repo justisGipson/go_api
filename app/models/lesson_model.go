@@ -11,6 +11,7 @@ import (
 
 // Un-exported struct fields are invisible to the JSON package.
 // Export a field by starting it with an uppercase letter.
+// https://golang.org/ref/spec#Exported_identifiers
 
 type Lesson struct {
 	// lesson ID
