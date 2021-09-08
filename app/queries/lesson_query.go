@@ -27,8 +27,16 @@ func (q *LessonQueries) GetLessons() ([]models.Lesson, error) {
 
 }
 
-func (q *LessonQueries) GetLesson(id uuid.UUID) ([]models.Lesson, error) {
+func (q *LessonQueries) GetLesson(id uuid.UUID) (models.Lesson, error) {
 	lesson := models.Lesson{}
 
 	query := `SELECT FROM Lessons WHERE id = $1`
+
+	err := q.Get(&lesson, query, id)
+	if err != nil {
+		return lesson, err
+	}
+	return lesson, nil
 }
+
+func (q *LessonQueries) CreateLesson() []mode
