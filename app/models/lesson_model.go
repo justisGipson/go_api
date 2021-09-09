@@ -33,7 +33,7 @@ type Lesson struct {
 	// grades covered by lesson
 	GradeRange int `db:"gradeRange" json:"gradeRange" validate:"required"`
 	// lesson learning objective
-	LearningObjectives string `db:"learningObjectives" json:"learningObjectives" validate:"required"`
+	LearningObjectives string `db:"learningObjectives" json:"learningObjectives"`
 	// lesson is sel: true | false
 	Sel bool `db:"sel" json:"sel" validate:"required"`
 	// dunno yet
