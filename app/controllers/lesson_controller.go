@@ -29,10 +29,10 @@ func GetLessons(c *fiber.Ctx) error {
 	lessons, err := db.GetLessons()
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
-			"error":   true,
-			"msg":     fmt.Errorf("lessons not found"),
-			"count":   0,
-			"lessona": nil,
+			"error":  true,
+			"msg":    fmt.Errorf("lessons not found"),
+			"count":  0,
+			"lesson": nil,
 		})
 	}
 	// return 200 "OK"
@@ -76,7 +76,7 @@ func GetLesson(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error":  true,
-			"msg":    fmt.Errorf("lesson %l not found", lesson),
+			"msg":    fmt.Errorf("lesson not found"),
 			"lesson": nil,
 		})
 	}

@@ -25,7 +25,7 @@ func (q *LessonQueries) GetLessons() ([]models.Lesson, error) {
 	err := q.Get(&lessons, query)
 	if err != nil {
 		// return empty obj and error message
-		return lessons, fmt.Errorf("query error: failed to get lessons - %e", err)
+		return lessons, fmt.Errorf("query error: failed to get lessons - %s", err)
 	}
 	// hopefully there's query results, and it's all the lessons
 	return lessons, nil
@@ -40,7 +40,7 @@ func (q *LessonQueries) GetLesson(id uuid.UUID) (models.Lesson, error) {
 	err := q.Get(&lesson, query, id)
 	if err != nil {
 		// return empty object and error message
-		return lesson, fmt.Errorf("query error: failed to get lesson - %e", err)
+		return lesson, fmt.Errorf("query error: failed to get lesson - %s", err)
 	}
 	// return single lesson
 	return lesson, nil
@@ -53,7 +53,7 @@ func (q *LessonQueries) CreateLesson(l *models.Lesson) (string, error) {
 	_, err := q.Exec(query, l.Created_at, l.Updated_at, l.Name, l.LessonNumber, l.Course, l.Active, l.CurrentVersion, l.GradeRange, l.LearningObjectives, l.Sel, l.KStandards, l.OneStandards, l.TwoStandards, l.ThreeStandards, l.FourStandards, l.FiveStandards, l.SixStandards, l.SevenStandards, l.EightStandards, l.NineStandards, l.TenStandards, l.ElevenStandards, l.TwelveStandards, l.LessonAttrs)
 	if err != nil {
 		// only returning error
-		return "", fmt.Errorf("query error: failed creating course - %e", err)
+		return "", fmt.Errorf("query error: failed creating course - %s", err)
 	}
 	// query isn't meant to return anything
 	// TODO: implement string formatting for this
@@ -69,7 +69,7 @@ func (q *LessonQueries) UpdateLesson(id uuid.UUID, l *models.Lesson) (string, er
 	_, err := q.Exec(query, id, l.Updated_at, l.Active)
 	if err != nil {
 		// return err message
-		return "", fmt.Errorf("query error: failed to update course - %e", err)
+		return "", fmt.Errorf("query error: failed to update course - %s", err)
 	}
 	// return nothing
 	return fmt.Sprintf("course %c updated", id), nil
@@ -81,7 +81,7 @@ func (q *LessonQueries) DeleteLesson(id uuid.UUID) (string, error) {
 	// send to db
 	_, err := q.Exec(query, id)
 	if err != nil {
-		return "", fmt.Errorf("query error: failed to delete lesson - %e", err)
+		return "", fmt.Errorf("query error: failed to delete lesson - %s", err)
 	}
 	return fmt.Sprintf("course %c deleted", id), nil
 }
