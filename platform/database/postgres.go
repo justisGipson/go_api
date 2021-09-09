@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/jmoiron//sqlx"
+	"github.com/jmoiron/sqlx"
 
 	_ "github.com/jackc/pgx/v4/stdlib" // pgx driver for PostgreSQL
 )
