@@ -29,6 +29,6 @@ migrate.down:
 migrate.force:
 	migrate -path $(MIGRATIONS_DIR) -database "$(DATABASE_URL)" force $(version)
 
-docker.run: docker.network docker.postgres swag docker.fiber migrate.up
+docker.run: docker.network docker.postgres docker.nginx swag docker.fiber migrate.up
 
 # TODO: Finish docker commands + single swag command
