@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/CodeliciousProduct/bluebird/pkg/utils"
+	"github.com/CodeliciousProduct/bluebird/internal/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
