@@ -16,12 +16,14 @@ type LessonQueries struct {
 	*sqlx.DB
 }
 
+// *lessonQueries being set through pointer to queries for all queries
 func (q *LessonQueries) GetLessons() ([]models.Lesson, error) {
 	// define lessons var
 	lessons := []models.Lesson{}
 	// define query string
 	query := `SELECT * FROM Lessons`
 	// query db
+	// &lessons pointer
 	err := q.Get(&lessons, query)
 	if err != nil {
 		// return empty obj and error message

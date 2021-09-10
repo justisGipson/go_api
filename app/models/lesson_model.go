@@ -77,5 +77,6 @@ func (l *LessonAttrs) Scan(value interface{}) error {
 	if !ok {
 		return errors.New("type assertion to []byte failed")
 	}
+	// &l points to LessonAttrs
 	return json.Unmarshal(j, &l)
 }
