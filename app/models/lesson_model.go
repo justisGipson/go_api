@@ -28,7 +28,7 @@ type Lesson struct {
 	Course string `db:"course" json:"course" validate:"required,lte=255"`
 	// active & in use: true | false
 	Active bool `db:"active" json:"active" validate:"required"`
-	// link to gdoc
+	// link to live Google Doc
 	CurrentVersion string `db:"currentVersion" json:"currentVersion" validate:"required"`
 	// grades covered by lesson
 	GradeRange int `db:"gradeRange" json:"gradeRange" validate:"required"`
