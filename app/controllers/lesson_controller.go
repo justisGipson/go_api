@@ -155,12 +155,12 @@ func CreateLesson(c *fiber.Ctx) error {
 		})
 	}
 	// delete book by id
-	// if err := db.DeleteLesson(lesson); err != nil {
-	// 	return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-	// 		"error": true,
-	// 		"msg":   err.Error(),
-	// 	})
-	// }
+	if err := db.CreateLesson(lesson); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
 	return c.JSON(fiber.Map{
 		"error":  false,
 		"msg":    nil,
