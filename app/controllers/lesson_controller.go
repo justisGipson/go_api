@@ -154,8 +154,8 @@ func CreateLesson(c *fiber.Ctx) error {
 			"msg":   utils.ValidatorErrors(err),
 		})
 	}
-	// delete book by id
-	if err := db.CreateLesson(lesson); err != nil {
+	// create lesson entry
+	if _, err := db.CreateLesson(lesson); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
 			"msg":   err.Error(),
@@ -166,4 +166,101 @@ func CreateLesson(c *fiber.Ctx) error {
 		"msg":    nil,
 		"lesson": lesson,
 	})
+}
+
+// UpdateLesson to update by id
+// @Description update lesson with a given id
+// @Summary update lesson by id
+// @Tags Lesson
+// @Accept json
+// @Produce json
+// @Param id body string true "Lesson ID"
+// @Param name body string true "Lesson Name"
+// @Param lessonNumber body string true "Lesson Number"
+// @Param active body bool true "Lesson Active status"
+// @Param lesson_attrs body models.LessonAttrs true "Lesson Attributes"
+// @Success 201 {string} status "ok"
+// @Security ApiKeyAuth
+// @Router /v1/lesson [put]
+func UpdateLesson(c *fiber.Ctx) error {
+	now := time.Now().Unix()
+
+	// jwt claims
+	claims, err := utils.ExtractTokenMetaData(c)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+	// set expiration of jwtToken from lesson jwt data
+	expires := claims.Expires
+	// if time.Now > jwt expire
+	if now > expires {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": true,
+			"msg":   "unauthorized, check token - could be expired",
+		})
+	}
+
+	lesson := &models.Lesson{}
+	if err := c.BodyParser(lesson); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+	// create db connection
+	db, err := database.OpenDBConnection()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+	// validate lesson with given ID
+	lessonToUpdate, err := db.GetLesson(lesson.ID)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": true,
+			"msg":   "lesson not found",
+		})
+	}
+
+	// set default lesson data
+	lesson.Updated_at = time.Now()
+	// lesson validator
+	validate := utils.NewValidator()
+	// lesson fields validation
+	if err := validate.Struct(lesson); err != nil {
+		// return error if some/all fields aren't valid
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": true,
+			"msg":   utils.ValidatorErrors(err),
+		})
+	}
+	// update lesson entry
+	if _, err := db.UpdateLesson(lessonToUpdate.ID, lesson); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+
+	return c.SendStatus(fiber.StatusCreated)
+}
+
+// DeleteLesson to delete lesson by ID
+// @Description delete lesson with given ID
+// @Summary delete lesson by id
+// @Tags Lesson
+// @Accept json
+// @Produce json
+// @Param id body string "Lesson ID"
+// @Success 204 {string} status "ok"
+// @Security ApiKeyAuth
+// @Router /v1/lesson [delete]
+func DeleteLesson(c *fiber.Ctx) error {
+	now := time.Now().Unix()
+
 }
