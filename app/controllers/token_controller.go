@@ -27,5 +27,4 @@ func GetNewAccessToken(c *fiber.Ctx) error {
 		"msg":          nil,
 		"access_token": token,
 	})
-
 }
