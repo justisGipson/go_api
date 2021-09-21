@@ -262,5 +262,65 @@ func UpdateLesson(c *fiber.Ctx) error {
 // @Router /v1/lesson [delete]
 func DeleteLesson(c *fiber.Ctx) error {
 	now := time.Now().Unix()
-
+	// get jwt claims
+	claims, err := utils.ExtractTokenMetaData(c)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+	// set expiration time for jwt claim on current lesson
+	expires := claims.Expires
+	// check time if great than jwt expiration
+	if now > expires {
+		// return 401 and error message
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": true,
+			"msg":   "unauthorized, token is expired",
+		})
+	}
+	// new lesson struct
+	lesson := &models.Lesson{}
+	// validate json
+	if err := c.BodyParser(lesson); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+	// new validator for lesson model
+	validate := utils.NewValidator()
+	// validate id field on lesson
+	if err := validate.StructPartial(lesson, "id"); err != nil {
+		// return fields not valid
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": true,
+			"msg":   utils.ValidatorErrors(err),
+		})
+	}
+	// db connection
+	db, err := database.OpenDBConnection()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+	// make sure lesson exists
+	lessonToDel, err := db.GetLesson(lesson.ID)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": true,
+			"msg":   "lesson with ID not found",
+		})
+	}
+	// delete the lesson with ID
+	if _, err := db.DeleteLesson(lessonToDel.ID); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": true,
+			"msg":   err.Error(),
+		})
+	}
+	return c.SendStatus(fiber.StatusNoContent)
 }

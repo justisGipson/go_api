@@ -49,7 +49,7 @@ func (q *LessonQueries) GetLesson(id uuid.UUID) (models.Lesson, error) {
 }
 
 func (q *LessonQueries) CreateLesson(l *models.Lesson) (string, error) {
-	// query string for creating book
+	// query string for creating lesson
 	query := `INSERT INTO lessons VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25)`
 	// send to DB, cross fingers
 	_, err := q.Exec(query, l.Created_at, l.Updated_at, l.Name, l.LessonNumber, l.Course, l.Active, l.CurrentVersion, l.GradeRange, l.LearningObjectives, l.Sel, l.KStandards, l.OneStandards, l.TwoStandards, l.ThreeStandards, l.FourStandards, l.FiveStandards, l.SixStandards, l.SevenStandards, l.EightStandards, l.NineStandards, l.TenStandards, l.ElevenStandards, l.TwelveStandards, l.LessonAttrs)
