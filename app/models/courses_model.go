@@ -1,4 +1,7 @@
-// TODO: implement an ORM
+// TODO: implement gorm
+// gorm will be better suited for working with json
+// and be easier to use
+// https://gorm.io/docs/models.html
 
 package models
 
