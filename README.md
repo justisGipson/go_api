@@ -1,8 +1,8 @@
 # Project Bluebird
 
-[![Linter](https://github.com/CodeliciousProduct/bluebird/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/golangci-lint)
+<!-- [![Linter](https://github.com/CodeliciousProduct/bluebird/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/golangci-lint)
 ![Greetings](https://github.com/CodeliciousProduct/bluebrid/actions/workflows/greetings.yml/badge.svg)
-![Stale](https://github.com/CodeliciousProduct/bluebird/actions/workflows/stale.yml/badge.svg)
+![Stale](https://github.com/CodeliciousProduct/bluebird/actions/workflows/stale.yml/badge.svg) -->
 
 This is to serve as a replacement API for the [`curriculumApp`](https://github.com/CodeliciousProduct/curriculumApp)
 
