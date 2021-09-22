@@ -13,7 +13,7 @@ import (
 
 // PostgreSQL Conn func
 func PostgreSQLConnection() (*sqlx.DB, error) {
-	// connection settings
+	// connection settings from env
 	maxConn, _ := strconv.Atoi(os.Getenv("DB_MAX_CONNECTIONS"))
 	maxIdleConn, _ := strconv.Atoi(os.Getenv("DB_MAX_IDLE_CONNECTIONS"))
 	maxLifetimeConn, _ := strconv.Atoi(os.Getenv("DB_MAX_LIFETIME_CONNECTIONS"))
