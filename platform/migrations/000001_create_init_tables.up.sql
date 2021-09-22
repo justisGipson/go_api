@@ -50,10 +50,14 @@ CREATE TABLE Standards (
 
 CREATE INDEX active_standards ON Standards (standardId);
 
-CREATE Courses ()
+CREATE TABLE Courses ()
 
 CREATE INDEX active_courses on Courses (courseId);
 
-CREATE Resources ()
+CREATE TABLE Resources ()
 
 CREATE INDEX active_resources on Resources (resourceId);
+
+CREATE TABLE Curriculum ()
+
+CREATE INDEX active_curriculum on Curriculum (curriculumId);

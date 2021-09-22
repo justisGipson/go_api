@@ -1,2 +1,5 @@
 -- Delete tables
 DROP TABLE IF EXISTS Lessons;
+DROP TABLE IF EXISTS Courses;
+DROP TABLE IF EXISTS Curriculum;
+DROP TABLE IF EXISTS Resources;
