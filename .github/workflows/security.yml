@@ -1,0 +1,12 @@
+on: [push, pull_request]
+name: Security Check
+jobs:
+  Gosec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fetch repo
+        uses: actions/checkout@v2
+      - name: run Gosec
+        uses: securego/gosec@master
+        with:
+          args: ./..

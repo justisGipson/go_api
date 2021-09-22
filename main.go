@@ -25,8 +25,8 @@ func main() {
 	// routes
 	routes.SwaggerRoute(app)  // API docs
 	routes.RouteNotFound(app) // 404 page
-
+	routes.PrivateRoutes(app) // all internal routes
+	routes.PublicRoutes(app)  // public routes - just sign in
 	// start up, now comes with graceful shutdown
 	utils.StartServer(app)
-
 }
