@@ -8,6 +8,8 @@ Moving to a containerized architecture on GCP
 
 This was written in [Golang](https://go.dev/) using [Fiber](https://github.com/gofiber/fiber) which is an Express inspired framework for the web, also written in Go
 
+Why Go? Because it was built for the cloud. Tons of cloud services run on Go and work well with a Go codebase. And its fast, compiles quickly, type checked, garbage collected.
+
 Even if you're not familiar with golang, this shouldn't be too difficult to get into. Very similar to an express app.
 
 <!-- TODO: compose all cmds for starting the app/containers -->
@@ -48,5 +50,8 @@ Bluebird to-dos:
     - [x] private routes
     - [ ] public routes
     - [x] db connections
+    - [ ] filters
     - [x] swagger docs
     - [x] swagger route
+    - [ ] update documentation (README - ongoing)
+    - [ ] go docstrings where it is helpful
