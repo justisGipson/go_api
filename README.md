@@ -18,6 +18,7 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 
 <!-- TODO: compose all cmds for starting the app/containers -->
 
+
 ### Bluebird to-dos:
 
 - [x] lesson model

@@ -1,6 +1,6 @@
 // db queries for lessons
-// Pure SQL queries for now, will implement something like `gorm`
-// when I optimize
+// Pure SQL queries for now,
+// will implement`gorm` in the near future
 
 package queries
 
