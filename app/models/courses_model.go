@@ -1,3 +1,8 @@
+// TODO: implement gorm
+// gorm will be better suited for working with json
+// and be easier to use
+// https://gorm.io/docs/models.html
+
 package models
 
 import (
@@ -28,6 +33,9 @@ type Course struct {
 	GradeRange int `db:"grade_range" json:"grade_range" validate:"required"`
 	// active status - true|false
 	Active bool `db:"active" json:"active" validate:"required"`
+	// modules in course - []byte should work with json
+	// which modules will most likely be it's own object
+	Modules []byte `db:"modules" json:"modules" validate:"required"`
 }
 
 type CourseAttrs struct {

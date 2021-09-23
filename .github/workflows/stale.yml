@@ -1,0 +1,41 @@
+###################################
+###################################
+#                                 #
+#    STALE CHECK GITHUB ACTION    #
+#                                 #
+###################################
+###################################
+
+# checks for issues and pull requests open
+# for longer than 14 days, then notifies the
+# author, if no action is taken they're closed
+# after 5 days.
+#
+# Does ignore certain tags for obvious reasons
+
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+    - cron: "30 1 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/stale@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: "This issue has been marked stale. It has been open 14 days with no activity. If you think this is wrong, feel free to remove the `no-issue-activity` label and keep working on it."
+          close-issue-message: "This issue is now closed. It had no activity for 5 days after it was flagged as stale. Reopen to keep working on it."
+          stale-pr-message: "This PR has been marked stale. It has been open 14 days with no activity. If you think this is wrong, feel free to remove the `no-issue-activity` label and keep working on it."
+          close-pr-message: "This PR is now closed. It had no activity for 5 days after it was flagged as stale. Reopen to keep working on it."
+          stale-issue-label: "stale: no activity"
+          stale-pr-label: "stale: no activity"
+          days-before-stale: 14
+          days-before-close: 5
+          days_before_pr_close: -1
+          exempt-pr-labels: "status: wip,priority: high,status: on hold"
+          exempt-issue-labels: "status: wip,priority: high,status: on hold"
+          remove_stale_when_updated: true
