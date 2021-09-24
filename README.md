@@ -66,3 +66,6 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 - [ ] CircleCI config
 - [ ] GCP config
 - [ ] ???
+- [x] issue template
+- [x] pr template
+- [x] repo issue/pr labels
