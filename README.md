@@ -63,3 +63,6 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 - [x] swagger route
 - [ ] update documentation (README - ongoing)
 - [ ] go docstrings where it is helpful
+- [ ] CircleCI config
+- [ ] GCP config
+- [ ] ???
