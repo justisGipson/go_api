@@ -14,17 +14,18 @@ import (
 	"github.com/google/uuid"
 )
 
-// NOTES: Fields start with an UPPERCASE letter
-// otherwise they are invisible to the JSON pkg
+// NOTE: Un-exported struct fields are invisible to the JSON package.
+// Export a field by starting it with an UPPERCASE letter.
+// Cannot use numbers or symbols
 // https://golang.org/ref/spec#Exported_identifiers
 
 type Course struct {
 	// generated course ID - DB only
 	ID uuid.UUID `db:"id" json:"id" validate:"required, uuid"`
 	// course created timestamp
-	Created_at time.Time `db:"created_at" json:"created_at"`
+	Created_at time.Time `db:"created_at" json:"created_at" validate:"required"`
 	// course updated @ timestamp
-	Updated_at time.Time `db:"updated_at" json:"updated_at"`
+	Updated_at time.Time `db:"updated_at" json:"updated_at" validate:"required"`
 	// course name e.g., Computer Science Foundations
 	Name string `db:"name" json:"name" validate:"required,lte=255"`
 	// course number
@@ -35,7 +36,8 @@ type Course struct {
 	Active bool `db:"active" json:"active" validate:"required"`
 	// modules in course - []byte should work with json
 	// which modules will most likely be it's own object
-	Modules []byte `db:"modules" json:"modules" validate:"required"`
+	Modules     []byte      `db:"modules" json:"modules" validate:"required"`
+	CourseAttrs CourseAttrs `db:"course_attrs" json:"course_attrs" validate:""`
 }
 
 type CourseAttrs struct {
