@@ -58,6 +58,7 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 - [x] db connections
 - [ ] db seeder + seed files
 - [ ] filters for tables
+- [ ] pagination
 - [x] swagger docs
 - [x] swagger route
 - [ ] update documentation (README - ongoing)

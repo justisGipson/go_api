@@ -14,8 +14,9 @@ import (
 	"github.com/google/uuid"
 )
 
-// NOTES: Fields start with an UPPERCASE letter
-// otherwise they are invisible to the JSON pkg
+// NOTE: Un-exported struct fields are invisible to the JSON package.
+// Export a field by starting it with an UPPERCASE letter.
+// Cannot use numbers or symbols
 // https://golang.org/ref/spec#Exported_identifiers
 
 type Course struct {
