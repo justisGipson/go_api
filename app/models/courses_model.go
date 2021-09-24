@@ -23,9 +23,9 @@ type Course struct {
 	// generated course ID - DB only
 	ID uuid.UUID `db:"id" json:"id" validate:"required, uuid"`
 	// course created timestamp
-	Created_at time.Time `db:"created_at" json:"created_at"`
+	Created_at time.Time `db:"created_at" json:"created_at" validate:"required"`
 	// course updated @ timestamp
-	Updated_at time.Time `db:"updated_at" json:"updated_at"`
+	Updated_at time.Time `db:"updated_at" json:"updated_at" validate:"required"`
 	// course name e.g., Computer Science Foundations
 	Name string `db:"name" json:"name" validate:"required,lte=255"`
 	// course number

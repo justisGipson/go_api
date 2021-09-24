@@ -23,9 +23,9 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 
 - [x] lesson model
 - [ ] course model - *in-progress*
-- [ ] curriculum model
+- [ ] curriculum model - *in-progress*
 - [ ] resources model
-- [ ] standards model
+- [ ] standards model - *in-progress*
 - [ ] users model
 - [x] lesson controller
 - [ ] course controller
