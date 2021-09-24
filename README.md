@@ -50,7 +50,7 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 - [x] down migrations for curriculum
 - [x] down migrations for resources
 - [x] down migrations for standards
-- [ ] down migrations for users
+- [x] down migrations for users
 - [ ] dockerfiles
 - [x] Makefile
 - [x] private routes
