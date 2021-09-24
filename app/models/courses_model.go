@@ -35,7 +35,8 @@ type Course struct {
 	Active bool `db:"active" json:"active" validate:"required"`
 	// modules in course - []byte should work with json
 	// which modules will most likely be it's own object
-	Modules []byte `db:"modules" json:"modules" validate:"required"`
+	Modules     []byte      `db:"modules" json:"modules" validate:"required"`
+	CourseAttrs CourseAttrs `db:"course_attrs" json:"course_attrs" validate:""`
 }
 
 type CourseAttrs struct {

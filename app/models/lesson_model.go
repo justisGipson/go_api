@@ -36,8 +36,8 @@ type Lesson struct {
 	LearningObjectives string `db:"learningObjectives" json:"learningObjectives" validate:"reqired"`
 	// lesson is sel: true | false
 	Sel bool `db:"sel" json:"sel" validate:"required"`
-	// dunno yet
-	// Types Types
+	// lesson type - formerly Pillars
+	Types Types
 	// standards mapped to lessons k-12
 	KStandards      string `db:"kStandards" json:"kStandards"`
 	OneStandards    string `db:"oneStandards" json:"oneStandards"`
@@ -57,7 +57,12 @@ type Lesson struct {
 }
 
 type Types struct {
-	// do these have to be their own thing?
+	// lesson types - DC, Unplugged, Coding, STEM Career
+	Id   uuid.UUID `db:"id" json:"id" validate:"required,uuid"`
+	Name string    `db:"name" json:"name" validate:"required,lte=255"`
+	// in Firestore there's a color associated with each type
+	// for reference in tables and used as a filter for lesson types
+	// Types are formerly "Pillars"
 }
 
 // Lesson Attributes...

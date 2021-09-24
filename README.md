@@ -22,7 +22,7 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 ### Bluebird to-dos:
 
 - [x] lesson model
-- [ ] course model
+- [ ] course model - *in-progress*
 - [ ] curriculum model
 - [ ] resources model
 - [ ] standards model
@@ -56,7 +56,8 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 - [x] private routes
 - [ ] public routes
 - [x] db connections
-- [ ] filters
+- [ ] db seeder + seed files
+- [ ] filters for tables
 - [x] swagger docs
 - [x] swagger route
 - [ ] update documentation (README - ongoing)
