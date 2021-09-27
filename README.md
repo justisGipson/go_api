@@ -58,8 +58,10 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 - [x] db connections
 - [ ] db seeder + seed files
 - [ ] filters for tables
-- [ ] pagination
+- [ ] pagination - https://github.com/raphaelvigee/go-paginate
 - [x] swagger docs
 - [x] swagger route
 - [ ] update documentation (README - ongoing)
 - [ ] go docstrings where it is helpful
+- [ ] implement gorm for db operations, gorm docs linked in models
+- [ ] replace fiber with gin - https://github.com/gin-gonic/gin
