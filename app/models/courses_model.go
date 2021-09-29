@@ -34,9 +34,9 @@ type Course struct {
 	GradeRange int `db:"grade_range" json:"grade_range" validate:"required"`
 	// active status - true|false
 	Active bool `db:"active" json:"active" validate:"required"`
-	// modules in course - []byte should work with json
+	// modules in course - []string = slice(array) of strings
 	// which modules will most likely be it's own object
-	Modules     []byte      `db:"modules" json:"modules" validate:"required"`
+	Modules     []string    `db:"modules" json:"modules" validate:"required"`
 	CourseAttrs CourseAttrs `db:"course_attrs" json:"course_attrs" validate:""`
 }
 
