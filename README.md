@@ -65,3 +65,9 @@ Even if you're not familiar with golang, this shouldn't be too difficult to get 
 - [ ] go docstrings where it is helpful
 - [ ] implement gorm for db operations, gorm docs linked in models
 - [ ] replace fiber with gin - https://github.com/gin-gonic/gin
+- [ ] CircleCI config
+- [ ] GCP config
+- [ ] ???
+- [x] issue template
+- [x] pr template
+- [x] repo issue/pr labels
