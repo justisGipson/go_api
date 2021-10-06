@@ -33,7 +33,7 @@ func GetLessons(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error":   true,
-			"msg":     fmt.Errorf("lessons not found"),
+			"msg":     fmt.Errorf("lessons not found - %v", err),
 			"count":   0,
 			"lessons": nil,
 		})
@@ -57,7 +57,7 @@ func GetLessons(c *fiber.Ctx) error {
 // @Success 200 {object} models.Lesson
 // @Router /v1/lesson/{id} [get]
 func GetLesson(c *fiber.Ctx) error {
-	// grab lesson by id in url
+	// grab lesson by id
 	id, err := uuid.Parse(c.Params("id"))
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
@@ -79,14 +79,14 @@ func GetLesson(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error":  true,
-			"msg":    fmt.Errorf("lesson not found"),
+			"msg":    fmt.Errorf("lesson %c not found - %v", id, err),
 			"lesson": nil,
 		})
 	}
 	// return 200 "OK"
 	return c.JSON(fiber.Map{
 		"error":  false,
-		"msg":    nil,
+		"msg":    nil, // do we want a success message?
 		"lesson": lesson,
 	})
 }
@@ -107,7 +107,7 @@ func CreateLesson(c *fiber.Ctx) error {
 	now := time.Now().Unix()
 
 	// jwt claims
-	claims, err := utils.ExtractTokenMetaData(c)
+	claims, err := utils.ExtractTokenMetadata(c)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
@@ -186,7 +186,7 @@ func UpdateLesson(c *fiber.Ctx) error {
 	now := time.Now().Unix()
 
 	// jwt claims
-	claims, err := utils.ExtractTokenMetaData(c)
+	claims, err := utils.ExtractTokenMetadata(c)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
@@ -263,7 +263,7 @@ func UpdateLesson(c *fiber.Ctx) error {
 func DeleteLesson(c *fiber.Ctx) error {
 	now := time.Now().Unix()
 	// get jwt claims
-	claims, err := utils.ExtractTokenMetaData(c)
+	claims, err := utils.ExtractTokenMetadata(c)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": true,
@@ -277,7 +277,7 @@ func DeleteLesson(c *fiber.Ctx) error {
 		// return 401 and error message
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"error": true,
-			"msg":   "unauthorized, token is expired",
+			"msg":   "unauthorized - token is expired",
 		})
 	}
 	// new lesson struct

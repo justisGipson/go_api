@@ -12,7 +12,7 @@ type TokenMetaData struct {
 	Expires int64
 }
 
-func ExtractTokenMetaData(c *fiber.Ctx) (*TokenMetaData, error) {
+func ExtractTokenMetadata(c *fiber.Ctx) (*TokenMetaData, error) {
 	token, err := verifyToken(c)
 	if err != nil {
 		return nil, err

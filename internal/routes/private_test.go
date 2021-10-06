@@ -64,6 +64,7 @@ func TestPrivateRoutes(t *testing.T) {
 			expectedError: false,
 			expectedCode:  401,
 		},
+		// TODO: write rest of tests
 	}
 
 	app := fiber.New()

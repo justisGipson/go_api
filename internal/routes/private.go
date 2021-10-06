@@ -11,13 +11,13 @@ import (
 func PrivateRoutes(a *fiber.App) {
 	// routes group
 	route := a.Group("/api/v1")
-	// GET
-	route.Get("/lesson", middleware.JWTProtected(), controllers.GetLesson)
-	route.Get("lesson/:id", middleware.JWTProtected(), controllers.GetLesson)
-	// POST
-	route.Post("/lesson", middleware.JWTProtected(), controllers.CreateLesson)
-	// PUT
-	route.Put("/lesson", middleware.JWTProtected(), controllers.UpdateLesson)
-	// DELETE
-	route.Delete("/lesson", middleware.JWTProtected(), controllers.DeleteLesson)
+	// Lessons routes
+	route.Get("/lessons", middleware.JWTProtected(), controllers.GetLessons)
+	route.Get("lessons/:id", middleware.JWTProtected(), controllers.GetLesson)
+	route.Post("/lessons", middleware.JWTProtected(), controllers.CreateLesson)
+	route.Put("/lessons", middleware.JWTProtected(), controllers.UpdateLesson)
+	route.Delete("/lessons", middleware.JWTProtected(), controllers.DeleteLesson)
+	// courses routes
+	route.Get("/courses", middleware.JWTProtected(), controllers.GetCourses)
+	route.Get("courses/:id", middleware.JWTProtected(), controllers.GetCourse)
 }
