@@ -20,4 +20,6 @@ func PrivateRoutes(a *fiber.App) {
 	// courses routes
 	route.Get("/courses", middleware.JWTProtected(), controllers.GetCourses)
 	route.Get("courses/:id", middleware.JWTProtected(), controllers.GetCourse)
+	route.Post("/courses", middleware.JWTProtected(), controllers.CreateNewCourse)
+	route.Put("/courses", middleware.JWTProtected(), controllers.UpdateCourse)
 }

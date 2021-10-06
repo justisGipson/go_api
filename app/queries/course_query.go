@@ -32,8 +32,8 @@ func (q *CourseQueries) GetCourses() ([]models.Course, error) {
 	return courses, nil
 }
 
-func (q *CourseQueries) GetCourse(id uuid.UUID) ([]models.Course, error) {
-	course := []models.Course{}
+func (q *CourseQueries) GetCourse(id uuid.UUID) (models.Course, error) {
+	course := models.Course{}
 	query := `SELECT FROM Courses WHERE id = $1`
 	err := q.Get(&course, query, id)
 	if err != nil {
@@ -62,7 +62,7 @@ func (q *CourseQueries) CreateNewCourse(c *models.Course) (string, error) {
 	return fmt.Sprintf("course %c created", c.ID), nil
 }
 
-func (q *CourseQueries) UpdateCourse(c *models.Course, id uuid.UUID) (string, error) {
+func (q *CourseQueries) UpdateCourse(id uuid.UUID, c *models.Course) (string, error) {
 	// query string - updates course `updated_at`, `modules`
 	// may have to rethink what gets updated, or what could get updated
 	// going to get some time w/ PM to discuss possibilities

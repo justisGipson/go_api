@@ -226,7 +226,6 @@ func UpdateLesson(c *fiber.Ctx) error {
 			"msg":   "lesson not found",
 		})
 	}
-
 	// set default lesson data
 	lesson.Updated_at = time.Now()
 	// lesson validator
@@ -312,7 +311,7 @@ func DeleteLesson(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": true,
-			"msg":   "lesson with ID not found",
+			"msg":   fmt.Errorf("lesson %c not found - %v", lesson.ID, err),
 		})
 	}
 	// delete the lesson with ID
