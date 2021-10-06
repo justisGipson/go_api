@@ -20,30 +20,18 @@ import (
 // https://golang.org/ref/spec#Exported_identifiers
 
 type Lesson struct {
-	// lesson ID
-	ID uuid.UUID `db:"id" json:"id" validate:"required,uuid"`
-	// creation timestamp
-	Created_at time.Time `db:"created_at" json:"created_at" validate:"required"`
-	// update timestamp
-	Updated_at time.Time `db:"updated_at" json:"updated_at" validate:"required"`
-	// lesson name
-	Name string `db:"name" json:"name" validate:"required,lte=255"`
-	// lesson number
-	LessonNumber string `db:"lessonNumber" json:"lessonNumber" validate:"required,lte=255"`
-	// lesson is part of course
-	Course string `db:"course" json:"course" validate:"required,lte=255"`
-	// active & in use: true | false
-	Active bool `db:"active" json:"active" validate:"required"`
-	// link to live Google Doc
-	CurrentVersion string `db:"currentVersion" json:"currentVersion" validate:"required"`
-	// grades covered by lesson
-	GradeRange int `db:"gradeRange" json:"gradeRange" validate:"required"`
-	// lesson learning objective
-	LearningObjectives string `db:"learningObjectives" json:"learningObjectives" validate:"reqired"`
-	// lesson is sel: true | false
-	Sel bool `db:"sel" json:"sel" validate:"required"`
-	// lesson type - formerly Pillars
-	Types Types
+	ID                 uuid.UUID `db:"id" json:"id" validate:"required,uuid"`                           // lesson ID
+	Created_at         time.Time `db:"created_at" json:"created_at" validate:"required"`                // creation timestamp
+	Updated_at         time.Time `db:"updated_at" json:"updated_at" validate:"required"`                // update timestamp
+	Name               string    `db:"name" json:"name" validate:"required,lte=255"`                    // lesson name
+	LessonNumber       string    `db:"lessonNumber" json:"lessonNumber" validate:"required,lte=255"`    // lesson number
+	Course             string    `db:"course" json:"course" validate:"required,lte=255"`                // lesson is part of course
+	Active             bool      `db:"active" json:"active" validate:"required"`                        // active & in use: true | false
+	CurrentVersion     string    `db:"currentVersion" json:"currentVersion" validate:"required"`        // link to live Google Doc
+	GradeRange         int       `db:"gradeRange" json:"gradeRange" validate:"required"`                // grades covered by lesson
+	LearningObjectives string    `db:"learningObjectives" json:"learningObjectives" validate:"reqired"` // lesson learning objective
+	Sel                bool      `db:"sel" json:"sel" validate:"required"`                              // lesson is sel: true | false
+	Types              *Types    // lesson type - formerly Pillars
 	// standards mapped to lessons k-12
 	KStandards      string `db:"k_standards" json:"k_standards"`
 	OneStandards    string `db:"1_standards" json:"1_standards"`

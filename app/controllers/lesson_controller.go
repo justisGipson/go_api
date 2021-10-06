@@ -20,7 +20,7 @@ import (
 // @Success 200 {array} models.Lesson
 // @Router /v1/lessons [get]
 func GetLessons(c *fiber.Ctx) error {
-	// create dn conn
+	// create db conn
 	db, err := database.OpenDBConnection()
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
@@ -32,16 +32,16 @@ func GetLessons(c *fiber.Ctx) error {
 	lessons, err := db.GetLessons()
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
-			"error":  true,
-			"msg":    fmt.Errorf("lessons not found"),
-			"count":  0,
-			"lesson": nil,
+			"error":   true,
+			"msg":     fmt.Errorf("lessons not found"),
+			"count":   0,
+			"lessons": nil,
 		})
 	}
 	// return 200 "OK"
 	return c.JSON(fiber.Map{
 		"error":   false,
-		"msg":     nil,
+		"msg":     nil, // do we want a success message?
 		"count":   len(lessons),
 		"lessons": lessons,
 	})

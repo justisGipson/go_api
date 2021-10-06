@@ -10,7 +10,8 @@ import (
 	"github.com/gofiber/helmet/v2"
 
 	_ "github.com/CodeliciousProduct/bluebird/third_party" // swagger docs
-	_ "github.com/joho/godotenv/autoload"                  // load .env file automatically
+	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload" // load .env file automatically
 )
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
 	config := configs.FiberConfig()
 	// new fiber app
 	app := fiber.New(config)
+	godotenv.Load()
 	// https headers with fiber/helmet
 	app.Use(helmet.New())
 	// register fiber's middleware
