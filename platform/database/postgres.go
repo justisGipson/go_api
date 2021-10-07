@@ -23,10 +23,10 @@ func PostgreSQLConnection() (*sqlx.DB, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error, no connection to database: %e", err)
 	}
-
-	db.SetMaxOpenConns(maxConn)                           // default is 0/unlimited connections
-	db.SetMaxIdleConns(maxIdleConn)                       // default is 2
-	db.SetConnMaxLifetime(time.Duration(maxLifetimeConn)) // 0, connections are reused forever
+	// set in ../../.env
+	db.SetMaxOpenConns(maxConn)                           // default is 100 connections, use 0 for unlimited
+	db.SetMaxIdleConns(maxIdleConn)                       // default is 10
+	db.SetConnMaxLifetime(time.Duration(maxLifetimeConn)) // default is 2, use 0 to reuse connections forever
 
 	// attempt db ping
 	if err := db.Ping(); err != nil {
