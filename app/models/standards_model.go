@@ -35,5 +35,5 @@ type Standard struct {
 // don't think we need to implement a StandardsAttr Struct
 // but if we do, we need to implement Value and Scan funcs
 // to implement driver.Value & sql.Scanner for encoding/decoding
-// of json representation of the structs
+// of json representation for structs
 // check lesson_model for example

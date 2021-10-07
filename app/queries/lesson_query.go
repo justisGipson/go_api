@@ -42,7 +42,7 @@ func (q *LessonQueries) GetLesson(id uuid.UUID) (models.Lesson, error) {
 	err := q.Get(&lesson, query, id)
 	if err != nil {
 		// return empty object and error message
-		return lesson, fmt.Errorf("query error: failed to get lesson - %v", err)
+		return lesson, fmt.Errorf("query error: failed to get lesson %c - %v", id, err)
 	}
 	// return single lesson object
 	return lesson, nil
@@ -54,6 +54,7 @@ func (q *LessonQueries) CreateLesson(l *models.Lesson) (string, error) {
 	// send to DB, cross fingers
 	_, err := q.Exec(
 		query,
+		l.ID,
 		l.Created_at,
 		l.Updated_at,
 		l.Name,
@@ -96,7 +97,7 @@ func (q *LessonQueries) UpdateLesson(id uuid.UUID, l *models.Lesson) (string, er
 	_, err := q.Exec(query, id, l.Updated_at, l.Active)
 	if err != nil {
 		// return err message
-		return "", fmt.Errorf("query error: failed to update lesson - %v", err)
+		return "", fmt.Errorf("query error: failed to update lesson %c - %v", id, err)
 	}
 	// return nothing
 	return fmt.Sprintf("lesson %c updated", id), nil
@@ -108,7 +109,7 @@ func (q *LessonQueries) DeleteLesson(id uuid.UUID) (string, error) {
 	// send to db
 	_, err := q.Exec(query, id)
 	if err != nil {
-		return "", fmt.Errorf("query error: failed to delete lesson - %v", err)
+		return "", fmt.Errorf("query error: failed to delete lesson %c - %v", id, err)
 	}
 	return fmt.Sprintf("lesson %c deleted", id), nil
 }
