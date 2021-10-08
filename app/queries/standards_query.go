@@ -42,7 +42,8 @@ func (q *StandardsQueries) GetStandard(id uuid.UUID) (models.Standard, error) {
 	return standard, nil
 }
 
-func (q *StandardsQueries) CreateNewStandard(s *models.Standard) (string, error) {
+// Create verbiage felt wrong here...
+func (q *StandardsQueries) AddNewStandard(s *models.Standard) (string, error) {
 	query := `INSERT INTO standards VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`
 	// send to db
 	_, err := q.Exec(

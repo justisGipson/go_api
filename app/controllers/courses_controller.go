@@ -121,7 +121,7 @@ func CreateNewCourse(c *fiber.Ctx) error {
 		// return 401 and error msg
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"error": true,
-			"msg":   "unauthorized - token is expired",
+			"msg":   "401 - unauthorized; token is expired",
 		})
 	}
 	// new course struct
@@ -199,7 +199,7 @@ func UpdateCourse(c *fiber.Ctx) error {
 	if now > expires {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"error": true,
-			"msg":   "unauthorized - check token, could be expired",
+			"msg":   "401 - unauthorized; token is expired",
 		})
 	}
 	course := &models.Course{}
