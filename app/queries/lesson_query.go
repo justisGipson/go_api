@@ -50,7 +50,7 @@ func (q *LessonQueries) GetLesson(id uuid.UUID) (models.Lesson, error) {
 
 func (q *LessonQueries) CreateLesson(l *models.Lesson) (string, error) {
 	// query string for creating lesson
-	query := `INSERT INTO lessons VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25)`
+	query := `INSERT INTO lessons VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26)`
 	// send to DB, cross fingers
 	_, err := q.Exec(
 		query,
@@ -63,6 +63,7 @@ func (q *LessonQueries) CreateLesson(l *models.Lesson) (string, error) {
 		l.Active,
 		l.CurrentVersion,
 		l.GradeRange,
+		l.Duration,
 		l.LearningObjectives,
 		l.Sel,
 		l.KStandards,
@@ -92,7 +93,7 @@ func (q *LessonQueries) UpdateLesson(id uuid.UUID, l *models.Lesson) (string, er
 	// query string
 	// right now updates `updated_at`, `active`
 	// need to figure out all fields that could be updated, probably all...
-	query := `UPDATE lessons SET updated_at = $2, active = $6 WHERE id = $1`
+	query := `UPDATE lessons SET updated_at = $2, name = $3, lessonNumber = $4, course = $5, active = $6, currentVersion = $7, duration = $9 WHERE id = $1`
 	// query db, update fields
 	_, err := q.Exec(query, id, l.Updated_at, l.Active)
 	if err != nil {

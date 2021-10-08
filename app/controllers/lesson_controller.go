@@ -199,7 +199,7 @@ func UpdateLesson(c *fiber.Ctx) error {
 	if now > expires {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"error": true,
-			"msg":   "unauthorized, check token - could be expired",
+			"msg":   "401 - unauthorized; token is expired",
 		})
 	}
 
@@ -223,7 +223,7 @@ func UpdateLesson(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": true,
-			"msg":   "lesson not found",
+			"msg":   fmt.Errorf("lesson %c not found %v", lesson.ID, err),
 		})
 	}
 	// set default lesson data
@@ -276,7 +276,7 @@ func DeleteLesson(c *fiber.Ctx) error {
 		// return 401 and error message
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"error": true,
-			"msg":   "unauthorized - token is expired",
+			"msg":   "401 - unauthorized; token is expired",
 		})
 	}
 	// new lesson struct

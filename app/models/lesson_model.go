@@ -19,6 +19,7 @@ import (
 // Cannot use numbers or symbols
 // https://golang.org/ref/spec#Exported_identifiers
 
+// TODO: add time/duration field here
 type Lesson struct {
 	ID                 uuid.UUID `db:"id" json:"id" validate:"required,uuid"`                           // lesson ID
 	Created_at         time.Time `db:"created_at" json:"created_at" validate:"required"`                // creation timestamp
@@ -29,6 +30,7 @@ type Lesson struct {
 	Active             bool      `db:"active" json:"active" validate:"required"`                        // active & in use: true | false
 	CurrentVersion     string    `db:"currentVersion" json:"currentVersion" validate:"required"`        // link to live Google Doc
 	GradeRange         int       `db:"gradeRange" json:"gradeRange" validate:"required"`                // grades covered by lesson
+	Duration           string    `db:"duration" json:"duration" validate:"required"`                    // lesson length/duration
 	LearningObjectives string    `db:"learningObjectives" json:"learningObjectives" validate:"reqired"` // lesson learning objective
 	Sel                bool      `db:"sel" json:"sel" validate:"required"`                              // lesson is sel: true | false
 	Types              *Types    // lesson type - formerly Pillars
